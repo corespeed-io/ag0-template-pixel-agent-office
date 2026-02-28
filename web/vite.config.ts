@@ -18,4 +18,11 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  server: {
+    hmr: {
+      // Behind a reverse proxy, the browser connects on 443 (HTTPS)
+      // instead of Vite's dev port
+      clientPort: Number(process.env.HMR_CLIENT_PORT) || undefined,
+    },
+  },
 });
