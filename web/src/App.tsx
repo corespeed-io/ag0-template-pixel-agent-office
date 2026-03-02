@@ -252,7 +252,7 @@ function PixelOffice() {
       setCooldown(true);
     } else if (cooldown) {
       // Task ended — start 30s cooldown
-      cooldownTimer.current = setTimeout(() => setCooldown(false), 30000);
+      cooldownTimer.current = setTimeout(() => setCooldown(false), 20000);
       return () => clearTimeout(cooldownTimer.current);
     }
   }, [isTaskRunning]);
