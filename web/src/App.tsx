@@ -252,7 +252,7 @@ function PixelOffice() {
       setCooldown(true);
     } else if (cooldown) {
       // Task ended — start 30s cooldown
-      cooldownTimer.current = setTimeout(() => setCooldown(false), 20000);
+      cooldownTimer.current = setTimeout(() => setCooldown(false), 10000);
       return () => clearTimeout(cooldownTimer.current);
     }
   }, [isTaskRunning]);
@@ -600,7 +600,7 @@ function OfficeScene({ status }: { status: AgentStatus }) {
               fontFamily: "'ArkPixel', monospace",
             }}
           >
-            Pixel Agent Office
+            Agent0 Star Office
           </span>
           <span style={{ fontSize: "18px" }}>⭐</span>
         </div>
@@ -770,7 +770,7 @@ function ChatPanel() {
                 agentText
               ) : (
                 <span className="dialogue-placeholder">
-                  Hello! How can I help you?
+                  Hi! I'm your Personal Assistant. How can I help you today?
                 </span>
               )}
             </div>

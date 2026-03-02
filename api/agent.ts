@@ -5,8 +5,7 @@ import { Hono } from "hono";
 //   @zypher/agent — https://jsr.io/@zypher/agent/doc
 //   @zypher/http  — https://jsr.io/@zypher/http/doc
 //   Or run: `deno doc jsr:@zypher/agent` / `deno doc jsr:@zypher/http`
-import { cloudflareGateway, createZypherAgent } from "@zypher/agent";
-// import { getSystemPrompt } from "@zypher/agent";  // uncomment when using systemPromptLoader
+import { cloudflareGateway, createZypherAgent, getSystemPrompt } from "@zypher/agent";
 import { getRequiredEnv } from "@zypher/utils/env";
 import { createZypherHandler } from "@zypher/http";
 import { buildAgentInfo } from "@ag0/agent-info";
@@ -63,12 +62,25 @@ export async function createZypherAgentRouter(): Promise<Hono> {
       // capabilities (e.g., agent skills, programmatic tool calling).
       // Put your own instructions in customInstructions; do NOT replace
       // the entire system prompt or these capabilities will be lost.
-      // Note: Returning different prompts each time will break prompt caching.
-      // systemPromptLoader: async () => {
-      //   return await getSystemPrompt(Deno.cwd(), {
-      //     customInstructions: "PUT YOUR SYSTEM PROMPT HERE",
-      //   });
-      // },
+      systemPromptLoader: async () => {
+        return await getSystemPrompt(Deno.cwd(), {
+          customInstructions: `You are Star, a friendly and helpful Personal Assistant working in the Agent0 Star Office.
+
+Your personality:
+- Warm, professional, and approachable
+- You speak concisely but clearly
+- You use occasional emoji to keep things friendly ✨
+- You're proactive — suggest next steps when appropriate
+
+Your capabilities:
+- Answer questions on any topic
+- Help with writing, brainstorming, and planning
+- Run terminal commands when needed
+- Assist with coding and technical tasks
+
+Always introduce yourself as "Star" when greeting users for the first time.`,
+        });
+      },
     },
 
     // Tools give the agent capabilities to perform actions
@@ -119,8 +131,8 @@ export async function createZypherAgentRouter(): Promise<Hono> {
     // Update the name and description to match your agent.
     .get("/info", async (c) => {
       const info = await buildAgentInfo(agent, {
-        name: "My Agent",
-        description: "My Agent Description",
+        name: "Star",
+        description: "Your Personal Assistant in Agent0 Star Office",
       });
       return c.json(info);
     });
