@@ -233,11 +233,87 @@ body {
   border-top: 8px solid #000;
 }
 
-/* Office background */
+/* Game dialogue box elements */
+.dialogue-name {
+  font-size: 11px;
+  font-weight: bold;
+  color: #3e2723;
+  letter-spacing: 2px;
+  padding: 2px 6px;
+  background: rgba(180, 140, 90, 0.5);
+  border: 2px solid #8d6e63;
+  display: inline-block;
+  align-self: flex-start;
+}
+.dialogue-box {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #2c1810;
+  padding: 8px 10px;
+  background: rgba(245, 228, 195, 0.6);
+  border: 3px solid #8d6e63;
+  box-shadow: inset 2px 2px 0 rgba(255,255,255,0.3), inset -2px -2px 0 rgba(0,0,0,0.1);
+}
+.dialogue-thinking {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #8d6e63;
+  font-size: 12px;
+}
+.dialogue-placeholder {
+  color: #a1887f;
+  font-style: italic;
+}
+.chat-overlay .typing-cursor::after { color: #5d4037; }
+
+/* Embedded chat overlay — blends with the pixel art bg */
+.chat-overlay {
+  background: rgba(212, 185, 145, 0.88);
+  border: 4px solid #5d4037;
+  box-shadow: inset 0 0 0 2px #8d6e63, 4px 4px 0 rgba(0,0,0,0.45);
+  color: #2c1810;
+  image-rendering: pixelated;
+}
+.chat-overlay .pixel-title {
+  color: #3e2723;
+  border-bottom-color: #8d6e63;
+}
+.chat-overlay .chat-bubble-user {
+  background: rgba(180, 140, 95, 0.55);
+  border-color: #8d6e63;
+  color: #2c1810;
+}
+.chat-overlay .chat-bubble-agent {
+  background: rgba(245, 225, 185, 0.75);
+  border-color: #5d4037;
+  color: #2c1810;
+}
+.chat-overlay .pixel-btn {
+  background: #8d6e63;
+  border-color: #5d4037;
+  color: #fff;
+}
+.chat-overlay .pixel-btn:hover {
+  background: #a1887f;
+  border-color: #3e2723;
+}
+.chat-overlay .pixel-btn.pixel-btn-primary {
+  background: #5d4037;
+  border-color: #3e2723;
+}
+.chat-overlay .pixel-btn.pixel-btn-primary:hover {
+  background: #795548;
+}
+.chat-overlay ::-webkit-scrollbar-track { background: rgba(200, 170, 120, 0.3); }
+.chat-overlay ::-webkit-scrollbar-thumb { background: #8d6e63; }
+.chat-overlay ::-webkit-scrollbar-thumb:hover { background: #5d4037; }
+.chat-overlay .typing-cursor::after { color: #5d4037; }
+
+/* Office background (legacy, unused — scene now uses scaled 1280×720 container) */
 .office-scene {
   width: 100%;
-  max-width: 1280px;
-  aspect-ratio: 16/9;
+  height: 100%;
   background-image: url('/static/office_bg_small.webp');
   background-size: cover;
   background-position: center;
@@ -246,10 +322,8 @@ body {
   overflow: hidden;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .office-scene {
-    aspect-ratio: auto;
-    height: 200px;
-  }
+/* Cat bubble float */
+@keyframes cat-bubble-float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-3px); }
 }
