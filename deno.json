@@ -1,6 +1,8 @@
 {
   "tasks": {
-    "dev": "VITE_PORT=5173 deno run --allow-all --env main.ts"
+    "dev": "cd web && pnpm dev --port 5173 & sleep 3 && VITE_PORT=5173 deno run --allow-all --env main.ts",
+    "dev:backend": "VITE_PORT=5173 deno run --allow-all --env main.ts",
+    "dev:frontend": "cd web && pnpm dev --port 5173"
   },
   "imports": {
     "@zypher/agent": "jsr:@zypher/agent@^0.9.5",
