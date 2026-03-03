@@ -13,6 +13,9 @@ export default defineConfig({
     }),
     tailwindcss(),
   ],
+  optimizeDeps: {
+    include: ["lucide-react"],
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
